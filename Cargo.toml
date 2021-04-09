@@ -1,0 +1,20 @@
+[package]
+name = "gcsthin"
+version = "1.0.0"
+edition = "2018"
+authors = ["Nicolas Viennot <Nicolas.Viennot@twosigma.com>"]
+description = "High performance streaming upload/download tool for Google Cloud Storage"
+license = "Apache-2.0"
+
+[dependencies]
+structopt    = { version = "0.3", default-features = false }
+anyhow       = { version = "1.0", default-features = false, features = ["std"] }
+url          = { version = "2.1", default-features = false }
+ureq         = { version = "1.4", default-features = false, features = ["json", "native-tls"] }
+jsonwebtoken = { version = "7",   default-features = false }
+serde        = { version = "1",   default-features = false, features = ["derive"] }
+serde_json   = { version = "1",   default-features = false }
+
+[profile.release]
+lto = true
+codegen-units = 1

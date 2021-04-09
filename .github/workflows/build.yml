@@ -1,0 +1,24 @@
+name: Build
+
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build gcsthin.tar.xz
+      run: |
+        ls -lh
+        docker build . -t gcsthin
+        docker run gcsthin cat gcsthin.tar.xz > ./gcsthin.tar.xz
+    - name: Upload gcsthin.tar.xz
+      uses: actions/upload-artifact@v2
+      with:
+        name: gcsthin.tar.xz
+        path: |
+          gcsthin.tar.xz
